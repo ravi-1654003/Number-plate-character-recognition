@@ -56,7 +56,7 @@ for each in tqdm(file):
         # Configuration for tesseract
         config = ('-l eng --oem 1 --psm 3')
         
-        # Run tesseract OCR on grayscale_image_contrast5
+        # Run tesseract OCR on grayscale_image_contrast4
         text_contrast4 = pytesseract.image_to_string(img_gray_contrast4, config=config)
         text_contrast4 = re.sub(r'\W+', '', text_contrast4) # removing special characters (keeping only AlphaNumeric values)
         text_update = re.sub('[^A-Z0-9]', '', text_contrast4) # taking only Capital Alphabets and numbers
@@ -101,7 +101,7 @@ for each in tqdm(file):
         final_data.append([serial_no,text_update])
     else:
         serial_no += 1
-        final_data.append([serial_no,'NULL']) # for gif image
+        final_data.append([serial_no,'NULL']) # for gif image (108th data point)
         continue
 #Data is stored in CSV file
 df = pd.DataFrame(final_data, columns = ['Serial_no','Number_plate'])
